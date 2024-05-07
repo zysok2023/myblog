@@ -3,6 +3,6 @@ python
 ======
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   python/pdm管理
+   pdm管理
