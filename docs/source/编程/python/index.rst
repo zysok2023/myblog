@@ -1,8 +1,8 @@
 
-python
+编程
 ======
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   pdm管理
+   python/pdm管理
