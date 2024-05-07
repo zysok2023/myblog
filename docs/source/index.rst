@@ -13,6 +13,7 @@ Welcome to it-boy's documentation!
    网络/index
    大数据/index
    编程/index
+   工具/index
 
 Indices and tables
 ==================
