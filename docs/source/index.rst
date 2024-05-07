@@ -11,6 +11,7 @@ Welcome to it-boy's documentation!
    :caption: Contents:
    
    测试1
+   测试2/index
    
 Indices and tables
 ==================
