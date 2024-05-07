@@ -9,9 +9,9 @@ Welcome to it-boy's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
-   编码/字符集
-   网络/JWT
+   
+   测试1
+   
 Indices and tables
 ==================
 
