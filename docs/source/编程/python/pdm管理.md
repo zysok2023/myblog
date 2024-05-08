@@ -8,7 +8,7 @@
 
 执行 pdm init 就会开始初始化，初始化的时候，会让你选择项目的一些信息
 
-* 是否要上传 PyPI
+* 是否要![PDM-帮助](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/PDM-帮助.png)上传 PyPI
 * 依赖的 Python 版本
 * License 类型
 * 作者信息
