@@ -18,11 +18,13 @@
 
 完成之后，PDM 会将你的选择以 toml 格式写入 pyproject.toml 配置文件中。
 
+![PDM-初始化](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/PDM-初始化.png)
+
 ## 语法
 
 pdm 有非常多的命令，使用 `-h` 可以看到帮助菜单
 
-![1715071682444](image/pdm管理/1715071682444.png)
+![PDM-帮助](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/PDM-帮助.png)
 
 ### 配置pypi源
 
