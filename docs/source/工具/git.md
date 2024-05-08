@@ -40,13 +40,15 @@
 
 ### 1.3 提议
 
-- #### 1.3.1 提交格式
+#### 1.3.1 提交格式
 
-`<type>(<scope>): <subject> <meta>`
-`<BLANK LINE>`
-`<body>`
-`<BLANK LINE>`
-`<footer>`
+```
+<type>(<scope>): <subject> <meta>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
 
     提交消息的第一行不应超过 72 个字符，所有其他行最多应有 100 个字符！这使得该消息在 Github 以及各种 git 工具中更容易阅读。
 
@@ -86,16 +88,16 @@
 
   主题行应包含更改的简洁描述。
 
-* [ ] 使用命令式、现在时：“change”而不是“changed”或“changes”
-* [ ] 不要将第一个字母大写
-* [ ] 末尾没有点 (.)
+* [X] 使用命令式、现在时：“change”而不是“changed”或“changes”
+* [X] 不要将第一个字母大写
+* [X] 末尾没有点 (.)
 
 - 允许 `<meta>`(可选)
 
   此外，主题行的末尾可能包含*主题标签* ，以方便更改日志的生成和分割。
 
-* [ ] #wip- 向贡献者表明正在实施的功能尚未完成。不应包含在变更日志中（只有功能的最后一次提交才会写入变更日志）。
-* [ ] #irrelevant- 提交没有添加有用的信息。在修复拼写错误等时使用...不应包含在变更日志中。
+* [X] #wip- 向贡献者表明正在实施的功能尚未完成。不应包含在变更日志中（只有功能的最后一次提交才会写入变更日志）。
+* [X] #irrelevant- 提交没有添加有用的信息。在修复拼写错误等时使用...不应包含在变更日志中。
 
 - 消息页脚
 
@@ -103,11 +105,11 @@
 
   **参考问题**：已关闭的错误应在页脚中的单独行中列出，并以“Closes”关键字为前缀，如下所示：
 
-    Closes #234
+  Closes #234
 
-    或者如果出现多个问题：
+  或者如果出现多个问题：
 
-    Closes #123, #245, #992
+  Closes #123, #245, #992
 
 ### 1.4 恢复
 
@@ -126,7 +128,6 @@ New $browser event:
 Breaks $browser.onHashChange, which was removed (use onUrlChange instead)
 ```
 
-
 ```
 fix($compile): add unit tests for IE9
 
@@ -138,7 +139,6 @@ Closes #392
 Breaks foo.bar api, foo.baz should be used instead
 ```
 
-
 ```
 feat(directive): add directives disabled/checked/multiple/readonly/selected
 
@@ -148,11 +148,9 @@ Added coresponding description, live examples and e2e tests.
 Closes #351
 ```
 
-
 ```
 style($location): add couple of missing semi colons
 ```
-
 
 ```
 docs(guide): update fixed docs from Google Docs
@@ -163,7 +161,6 @@ Couple of typos fixed:
 - start periodic checking
 - missing brace
 ```
-
 
 ```
 feat($compile): simplify isolate scope bindings
@@ -211,6 +208,12 @@ The removed `inject` wasn't generaly useful for directives so there should be no
 
     自上次发布以来所有主题的列表（提交消息中的第一行）：
 
-    `git log <最后一个标签> HEAD --pretty=format:%s 此版本中的新功能`
+```shell
+git log <最后一个标签> HEAD --pretty=format:%s
+```
 
-    `git log <最新版本> HEAD --grep feat`
+   此版本中的新功能
+
+```shell
+git log <最新版本> HEAD --grep feat
+```
