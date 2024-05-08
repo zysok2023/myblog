@@ -2,7 +2,7 @@
 
 ## 安装
 
-`pipx install pdm`
+`pip install pdm`
 
 ## 初始化
 
