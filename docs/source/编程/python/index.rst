@@ -8,5 +8,6 @@ python
    pdm管理
    python函数基础
    python函数的执行过程
+   python模块和包
    python基础知识
 
