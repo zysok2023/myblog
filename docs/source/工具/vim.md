@@ -237,9 +237,9 @@
 ## 9. 编辑多个文件
 ### 9.1 一次编辑多个文件
 - 我们可以一次打开多个文件，如
-- ```shell
-- vi a.txt b.txt c.txt
-- ```
+```shell
+    vi a.txt b.txt c.txt
+```
 - 使用:next(:n)编辑下一个文件。
 - :2n 编辑下2个文件。
 - 使用:previous或:N编辑上一个文件。
@@ -408,13 +408,13 @@
 ### 13.5 编译
 - vim提供了:make来编译程序，默认调用的是make， 如果你当前目录下有makefile，简单地:make即可。
 - 如果你没有make程序，你可以通过配置makeprg选项来更改make调用的程序。 如果你只有一个abc.Java文件，你可以- 这样设置：
-- ```shell
-- set makeprg=javac\ abc.java
-- ```
+```shell
+    set makeprg=javac\ abc.java
+```
 - 然后:make即可。如果程序有错，可以通过quickfix窗口查看错误。 不过如果要正确定位错误，需要设置好- errorformat，让vim识别错误信息。 如：
-- ```shell
-- :setl efm=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-- ```
+```shell
+    :setl efm=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+```
 - %f表示文件名，%l表示行号， %m表示错误信息，其它的还不能理解。 请参考 :help errorformat。
 ### 13.6 快速修改窗口
 - 其实是quickfix插件提供的功能， 对编译调试程序非常有用 :)
