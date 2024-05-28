@@ -14,9 +14,7 @@ release = 'v0.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 # 添加对markdown的支持,markdown的表格语法支持
-extensions = ['recommonmark',
-              'sphinx_markdown_tables'
-              ]
+extensions = ['recommonmark', 'sphinx_markdown_tables']
 
 # 这个需要自己加上，这里主要说明什么格式的文件由什么解析
 source_suffix = {
