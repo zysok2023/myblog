@@ -8,3 +8,4 @@
    git
    命令行选项及参数
    vim
+   shell
