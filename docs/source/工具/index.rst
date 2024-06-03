@@ -10,3 +10,4 @@
    vim
    shell
    正则表达式
+   wget和curl

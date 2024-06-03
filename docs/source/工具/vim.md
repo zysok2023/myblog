@@ -661,7 +661,7 @@ git 与 vim 可以说是非常好的一对搭档了, 平时在终端中提交 co
 - :diffsplit filename: 已经在 vim 中时, 使用此命令与别的文件进行对比
 - :vert diffsplit filename: 同上
 - vimidff file1 file2: 对比 file1 与 file2 的差别
-- vim -d file1 file2: 同上 🐷
+- vim -d file1 file2: 同上
 - :wqa: 冲突修复完成保存退出, 如果仍然有文件冲突则进入下一个冲突
 - :cq: 放弃修复, 终止流程(在 merge conflict 时很有用, 否则使用了 qa 的话想再次进入 mergetool 就必须使用 git checkout --conflict=diff3 {file} 了)
 ## 24.远程编辑
