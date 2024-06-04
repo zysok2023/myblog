@@ -1,4 +1,5 @@
-# 1.WGET工具
+# WGET&CURL
+## WGET使用
 wget是一个下载网页文件的免费工具。它将互联网上的数据保存到一个文件或展示在终端上。它支持通过 FTP、SFTP、HTTP 和 HTTPS 下载。
 wget Options
 | Option                            | Description                                                                                                                                                     |
@@ -22,13 +23,13 @@ wget Options
 | --tries=[number_of_tries]         | Sets the maximum number of retries for failed downloads when using wget.                                                                                        |
 | --no-check-certificate            | Disables SSL certificate verification when making HTTPS connections.                                                                                            |
 | U, --user-agent="user-agent-here" | Allows users to specify a custom user agent string for HTTP requests.                                                                                           |
-## 1.1 使用 Wget 命令下载单个文件
+### 1.1 使用 Wget 命令下载单个文件
 最基本的 wget 命令示例之一是下载单个文件并将其存储在当前工作目录中。例如，您可以使用以下方法获取最新版本的 WordPress：
 ```
 wget https://wordpress.org/latest.zip
 ```
 在此示例中，将下载名为 latest.zip 的文件到当前工作目录中。您还将看到其他信息，例如下载进度、速度、大小、时间和日期。
-## 1.2 使用 wget 命令下载多个文件
+### 1.2 使用 wget 命令下载多个文件
 可以将 wget 的使用更进一步，一次下载多个文件。为此，我们需要创建一个文本文档并将下载 URL 放在那里。在此示例中，我们将使用 wget 检索最新版本的 WordPress、Joomla 和 Drupal。输入以下内容
 ```
 nano example.txt
@@ -38,27 +39,27 @@ https://ftp.drupal.org/files/projects/drupal-8.4.5.zip
 wget -i example.txt
 
 ```
-## 1.3 使用 wget 命令获取不同名称的文件
+### 1.3 使用 wget 命令获取不同名称的文件
 在这个 wget 示例中，我们将借助 -O 选项使用不同的名称保存文件：
 ```
 wget -O wordpress-install.zip https://wordpress.org/latest.zip
 ```
-## 1.4 使用 wget 命令将文件保存在指定目录中
+### 1.4 使用 wget 命令将文件保存在指定目录中
 可以使用 -P 函数利用 wget 将文件放置在另一个目录中
 ```
 wget -P documents/archives/ https://wordpress.org/latest.zip
 ```
-## 1.5 使用 Wget 命令限制下载速度
+### 1.5 使用 Wget 命令限制下载速度
 使用 wget，您还可以限制下载速度。这在检索大文件时很有用，可以防止它使用所有带宽。此 wget 示例将限制设置为 500k：
 ```
 wget --limit-rate=500k https://wordpress.org/latest.zip
 ```
-## 1.6 使用 Wget 命令设置重试次数
+### 1.6 使用 Wget 命令设置重试次数
 Internet 连接问题可能会导致下载中断。为了解决这个问题，我们可以使用 -tries 函数增加重试次数：
 ```
 wget -tries=100 https://wordpress.org/latest.zip
 ```
-## 1.7 使用 Wget 命令在后台下载
+### 1.7 使用 Wget 命令在后台下载
 对于非常大的文件，您可以利用 -b 函数。它将在后台下载您的内容。
 ```
 wget -b http://example.com/beefy-file.tar.gz
@@ -67,7 +68,7 @@ wget-log 将出现在您的工作目录中，可用于检查您的下载进度�
 ```
 tail -f wget-log
 ```
-## 1.8 使用Wget命令通过FTP下载
+### 1.8 使用Wget命令通过FTP下载
 使用wget命令下载ftp服务器上的文件和文件夹
 ```
 wget ftp://ip:port/file --ftp-user=name --ftp-password=password -r
@@ -81,12 +82,12 @@ password：ftp用户密码
 -r:递归下载
 --no-passive-ftp:关闭ftp被动模式
 ```
-## 1.9 使用 Wget 命令检索整个网站
+### 1.9 使用 Wget 命令检索整个网站
 也可以使用 wget 命令下载整个站点的内容。这将允许您在没有互联网连接的情况下在本地查看它。下面是一个示例：
 ```
 wget --mirror --convert-links --page-requisites --no-parent -P documents/websites/ https://some-website.com
 ```
-## 1.10 使用 Wget 命令查找断开的链接
+### 1.10 使用 Wget 命令查找断开的链接
 我们可以使用 wget 命令来查找在特定网站上显示 404 错误的所有损坏的 URL。首先执行以下操作：
 ```
 wget -o wget-log -r -l 5 --spider http://example.com
@@ -100,22 +101,22 @@ wget -o wget-log -r -l 5 --spider http://example.com
 ```
 grep -B 2 '404' wget-log | grep "http" | cut -d " " -f 4 | sort -u
 ```
-## 1.11 使用 Wget 命令断点续传
+### 1.11 使用 Wget 命令断点续传
 当文件特别大或者网络特别慢的时候，往往一个文件还没有下载完，连接就已经被切断，此时就需要断点续传。wget的断点续传是自动的，只需要使用-c参数。
 ```
  wget -c http://the.url.of/incomplete/file
 ```
-## 1.12 选择性的下载
+### 1.12 选择性的下载
 可以指定让wget只下载一类文件，或者不下载什么文件。例如：
 ```
  wget -m –reject=gif http://target.web.site/subdirectory
 ```
  表示下载http://target.web.site/subdirectory，但是忽略gif文件。–accept=LIST 可以接受的文件类型，–reject=LIST拒绝接受的文件类型。
-# 2.CRUL工具
+## 2.CRUL工具
 curl （“客户端 URL”的缩写）是一个命令行工具，支持通过各种网络协议传输数据。它通过指定相关的 URL 和需要发送或接收的数据来与 Web 或应用程序服务器进行通信。
 
 curl还支持SSL认证、HTTP POST、HTTP PUT、FTP上传, HTTP form based upload、proxies、HTTP/2、cookies、用户名+密码认证(Basic, Plain, Digest, CRAM-MD5, NTLM, Negotiate and Kerberos)、file transfer resume、proxy tunneling。
-## 2.1 curl 协议
+### 2.1 curl 协议
 
 cURL支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP。
 | Protocol            | Description                                                                                                   |
@@ -138,7 +139,7 @@ cURL支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、S
 | TELNET              | 用于面向文本的双向交互式通信的应用层协议。                                                                    |
 | TFTP                | 简单文件传输协议，用于将文件上传或下载到远程主机或从远程主机下载文件。                                        |
 
-## 2.2 curl 命令选项
+### 2.2 curl 命令选项
 参考[curl使用手册](https://curl.se/docs/tutorial.html)
 curl 接受多种选项，这使其成为一个非常通用的命令。选项以一个或两个破折号开头。如果它们不需要其他值，则可以将单破折号选项写入在一起.
 ![curl命令](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/curl命令.png)
@@ -160,7 +161,7 @@ curl 接受多种选项，这使其成为一个非常通用的命令。选项以
 -x/--proxy <host[:port]>              在给定的端口上使用HTTP代理
 -#/--progress-bar                        进度条显示当前的传送状态
 ```
-## 2.2 curl 示例
+### 2.2 curl 示例
 ```
 curl ftp://name:passwd@ftp.server.example:port/full/path/to/file
 curl -u name:passwd ftp://ftp.server.example:port/full/path/to/file
@@ -194,12 +195,12 @@ curl -o #1_#2.JPG http://www.linux.com/{hello,bb}/dodo[1-5].JPG
 curl -r 0-100 -o dodo1_part1.JPG http://www.linux.com/dodo1.JPG
 curl -C -O http://www.linux.com/dodo1.JPG
 ```
-## 2.3 可用的 --write-out 变量
+### 2.3 可用的 --write-out 变量
 ![curl的w选项](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/curl的w选项.png)
 在 curl 8.1.0 中，添加了仅输出特定 URL 组件的变量，以防 url or url_effective 变量显示的内容超出您的预期。
 参考(everying-curl)[https://everything.curl.dev/usingcurl/verbose/writeout.html]
 
-## 2.4  Unicode 编码的响应的转换
+### 2.4  Unicode 编码的响应的转换
 当使用 curl 命令发出请求并收到 Unicode 编码的响应时，中文字符可能会显示为 Unicode 转义序列（例如 \u4f60\u597d），而不是实际的中文字符（例如 你好）。这是因为 curl 默认不会对输出进行 Unicode 解码。
 ```
 curl -s https://api.example.com/data | jq .
