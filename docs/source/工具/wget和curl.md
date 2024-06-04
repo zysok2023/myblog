@@ -23,6 +23,7 @@ wget是一个下载网页文件的免费工具。它将互联网上的数据保�
 | --tries=[number_of_tries]         | Sets the maximum number of retries for failed downloads when using wget.                                                                                        |
 | --no-check-certificate            | Disables SSL certificate verification when making HTTPS connections.                                                                                            |
 | U, --user-agent="user-agent-here" | Allows users to specify a custom user agent string for HTTP requests.                                                                                           |
+
 ### 1.1 使用 Wget 命令下载单个文件
 最基本的 wget 命令示例之一是下载单个文件并将其存储在当前工作目录中。例如，您可以使用以下方法获取最新版本的 WordPress：
 ```
@@ -139,6 +140,7 @@ cURL支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、S
 | SMTP, SMPTS         | 简单邮件传输协议 - 一种电子邮件协议，用于轻松传输电子邮件。SMTPS 是添加了 SSL/TLS 安全层的相同协议的版本。    |
 | TELNET              | 用于面向文本的双向交互式通信的应用层协议。                                                                    |
 | TFTP                | 简单文件传输协议，用于将文件上传或下载到远程主机或从远程主机下载文件。                                        |
+
 
 ### 2.2 curl 命令选项
 参考[curl使用手册](https://curl.se/docs/tutorial.html)
