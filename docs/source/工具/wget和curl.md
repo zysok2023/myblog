@@ -1,7 +1,7 @@
 # WGET&CURL
-## WGET使用
+## 1.WGET使用
 wget是一个下载网页文件的免费工具。它将互联网上的数据保存到一个文件或展示在终端上。它支持通过 FTP、SFTP、HTTP 和 HTTPS 下载。
-wget Options
+
 | Option                            | Description                                                                                                                                                     |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | -b, --background                  | Goes to background immediately after startup.                                                                                                                   |
@@ -119,6 +119,7 @@ curl还支持SSL认证、HTTP POST、HTTP PUT、FTP上传, HTTP form based uploa
 ### 2.1 curl 协议
 
 cURL支持的通信协议有FTP、FTPS、HTTP、HTTPS、TFTP、SFTP、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP。
+
 | Protocol            | Description                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | DICT                | 一种字典网络协议，用于向字典服务器查询单词的含义                                                              |
