@@ -201,7 +201,7 @@ curl -C -O http://www.linux.com/dodo1.JPG
 ### 2.3 可用的 --write-out 变量
 ![curl的w选项](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/curl的w选项.png)
 在 curl 8.1.0 中，添加了仅输出特定 URL 组件的变量，以防 url or url_effective 变量显示的内容超出您的预期。
-参考(everying-curl)[https://everything.curl.dev/usingcurl/verbose/writeout.html]
+参考[everying-curl](https://everything.curl.dev/usingcurl/verbose/writeout.html)
 
 ### 2.4  Unicode 编码的响应的转换
 当使用 curl 命令发出请求并收到 Unicode 编码的响应时，中文字符可能会显示为 Unicode 转义序列（例如 \u4f60\u597d），而不是实际的中文字符（例如 你好）。这是因为 curl 默认不会对输出进行 Unicode 解码。
