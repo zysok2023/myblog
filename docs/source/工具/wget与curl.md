@@ -1,5 +1,5 @@
-# WGET&CURL
-## 1.WGET使用
+# wget和curl
+## 1.wget使用
 wget是一个下载网页文件的免费工具。它将互联网上的数据保存到一个文件或展示在终端上。它支持通过 FTP、SFTP、HTTP 和 HTTPS 下载。
 
 | Option                            | Description                                                                                                                                                     |
@@ -24,7 +24,7 @@ wget是一个下载网页文件的免费工具。它将互联网上的数据保�
 | --no-check-certificate            | Disables SSL certificate verification when making HTTPS connections.                                                                                            |
 | U, --user-agent="user-agent-here" | Allows users to specify a custom user agent string for HTTP requests.                                                                                           |
 
-### 1.1 使用 Wget 命令下载单个文件
+### 1.1 使用 wget 命令下载单个文件
 最基本的 wget 命令示例之一是下载单个文件并将其存储在当前工作目录中。例如，您可以使用以下方法获取最新版本的 WordPress：
 ```
 wget https://wordpress.org/latest.zip
@@ -197,6 +197,8 @@ curl -O http://www.linux.com/{hello,bb}/dodo[1-5].JPG
 curl -o #1_#2.JPG http://www.linux.com/{hello,bb}/dodo[1-5].JPG
 curl -r 0-100 -o dodo1_part1.JPG http://www.linux.com/dodo1.JPG
 curl -C -O http://www.linux.com/dodo1.JPG
+curl https://reqres.in/api/users?page=2|jq -M
+
 ```
 ### 2.3 可用的 --write-out 变量
 ![curl的w选项](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/curl的w选项.png)
@@ -209,3 +211,41 @@ curl -C -O http://www.linux.com/dodo1.JPG
 curl -s https://api.example.com/data | jq .
 ```
 -s 选项会使 curl 静默模式运行，避免输出进度信息。jq . 会格式化 JSON 响应并正确处理 Unicode 字符。
+
+### 2.5 模拟POST/GET请求
+enctype：规定了form表单在发送到服务器时候编码方式，它有如下的三个值
+- application/x-www-form-urlencoded：默认的编码方式。但是在用文本的传输和MP3等大型文件的时候，使用这种编码就显得 效率低下。
+- multipart/form-data：指定传输数据为二进制类型，比如图片、mp3、文件
+- text/plain：纯文体的传输。空格转换为 “+” 加号，但不对特殊字符编码
+- 发送GET请求
+请求格式：curl http://ip:port/url?args=xxx&args1=xxxx
+- 发送POST请求
+请求格式：curl -H 请求头 -d 请求体 -X POST http://ip:port/url
+参数说明：
+ - -H (或者 –header)：请求头，格式：“Content-Type: application/json”
+ - -d：POST内容，格式：{”name”:”abc”,”passwd”:”aaa123”}或者”name=abc&passwd=aaa123”
+ - -X：请求协议，格式：POST、GET、DELETE、PUSH、PUT、OPTIONS、HEAD
+示例：
+- application/x-www-form-urlencoded
+application/x-www-form-urlencoded是浏览器默认的编码格式,
+```
+curl -X POST -d "user=admin&passwd=abcd" http://127.0.0.1:8000/login
+```
+- application/json
+```
+curl -H "Content-Type: application/json" -X POST -d '{"name": "admin", "passwd":"abcd"}' http://127.0.0.1:8000/login
+```
+- multipart/form-data
+
+```
+curl -F raw=@raw.data -F name=admin http://127.0.0.1:8000/login
+curl -H "Content-Type: application/json" -X POST -d @data.json http://127.0.0.1:8000/login
+```
+
+
+
+
+
+
+
+
