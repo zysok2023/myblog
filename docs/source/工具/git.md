@@ -260,7 +260,7 @@ git diff --cached # 这个命令显示暂存区和本地仓库的差异
 git reset # 暂存区的修改恢复到工作区
 git reset --soft # 与git reset等价，回到已修改状态，修改的内容仍然在工作区中
 git reset --hard # 回到未修改状态，清空暂存区和工作区
-### 已提交,未推送
+#### 已提交,未推送
 执行完commit之后，会在仓库中生成一个版本号(hash值)，标志这次提交。之后任何时候，都可以借助这个hash值回退到这次提交。
 git diff <branch-name1> <branch-name2> # 比较2个分支之间的差异
 git diff master origin/master # 查看本地仓库与本地远程仓库的差异
@@ -268,11 +268,11 @@ git reset --hard origin/master # 回退与本地远程仓库一致
 git reset --hard HEAD^ # 回退到本地仓库上一个版本
 git reset --hard <hash code> # 回退到任意版本
 git reset --soft/git reset # 回退且回到已修改状态，修改仍保留在工作区中。
-### 已推送到远程
+#### 已推送到远程
 git push -f orgin master # 强制覆盖远程分支
 git push -f # 如果之前已经用 -u 关联过，则可省略分支名
-## 4.3  其它常用命令
-### 关联远程仓库
+### 4.3  其它常用命令
+#### 关联远程仓库
 - 如果还没有Git仓库，你需要
 git init
 - 如果你想关联远程仓库
@@ -290,7 +290,7 @@ git clone <git-repo-url>
 关联的远程仓库将被命名为origin，这是默认的。
 - 如果你想把别人仓库的地址改为自己的
 git remote set-url origin <your-git-url>
-### 切换分支
+#### 切换分支
 新建仓库后，默认生成了master分支
 - 如果你想新建分支并切换
 git checkout -b <new-branch-name>
@@ -312,7 +312,7 @@ git pull origin <branch-name>
 git stash # 工作区修改暂存
 git pull  # 更新分支
 git stash pop # 暂存修改恢复到工作区
-### 撤销操作
+#### 撤销操作
 - 恢复暂存区文件到工作区
 git checkout <file-name>
 - 恢复暂存区的所有文件到工作区
@@ -329,7 +329,7 @@ git revert <commit-hash>
 git reflog #查看最近操作记录
 git reset --hard HEAD{5} #恢复到前五笔操作
 git pull origin backend-log #再次拉取代码
-### 版本回退与前进
+#### 版本回退与前进
 - 查看历史版本
 git log
 - 你可能觉得这样的log不好看，试试这个
@@ -357,7 +357,7 @@ HEAD^^可以换作具体版本hash值。
 git commit --amend
 - 看看当前状态吧
 git status
-## 4.4 配置Git
+### 4.4 配置Git
 - 看看当前的配置
 git config --list
 - 估计你需要配置你的名字
