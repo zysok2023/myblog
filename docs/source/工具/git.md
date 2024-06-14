@@ -193,7 +193,7 @@ git log <最新版本> HEAD --grep feat
 ```
 ## 3.在线学习网站
 [git在线学习](https://learngitbranching.js.org/?locale=zh_CN)
-
+[git在线学习实验](https://juejin.cn/post/7133051740772892685?from=search-suggest)
 ## 4.Git常用
 ### 4.1  代码提交和同步代码
 ![代码提交和同步代码](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/代码提交和同步代码.png)
@@ -244,7 +244,70 @@ git reset --soft/git reset # 回退且回到已修改状态，修改仍保留在
 #### 已推送到远程
 git push -f orgin master # 强制覆盖远程分支
 git push -f # 如果之前已经用 -u 关联过，则可省略分支名
-### 4.3  其它常用命令
+### 4.3  相对引用
+在Git 中，git checkout 命令用于切换分支或还原文件到不同的状态。相对引用是一种在 git checkout 命令中使用的方式，它可以让你基于相对位置来引用分支、提交或文件状态。
+- 相对于当前分支
+ - git checkout HEAD：切换到当前分支的最新提交状态
+- 相对于其他分支
+ - git checkout branchName~3：切换到名为 branchName 分支的倒数第三个提交状态
+- 相对于提交哈希值
+ - git checkout commitHash~1
+- 相对于文件状态
+ - git checkout HEAD~2 -- filename
+使用相对引用最多的就是移动分支。可以直接使用 -f 选项让分支指向另一个提交
+git branch -f main HEAD~3
+上面的命令会将 main 分支强制指向 HEAD 的第 3 级 parent 提交。
+### 4.4 整理提交记录
+开发人员有时会说“我想要把这个提交放到这里, 那个提交放到刚才那个提交的后面”, 而接下来就讲的就是它的实现方式，非常清晰、灵活，还很生动。
+cherry-pick 可以将提交树上任何地方的提交记录取过来追加到 HEAD 上（只要不是 HEAD 上游的提交就没问题）。
+git cherry-pick <提交号>
+![本地栈式提交](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/本地栈式提交.png)
+场景:
+来看一个在开发中经常会遇到的情况：我正在解决某个特别棘手的 Bug，为了便于调试而在代码中添加了一些调试命令并向控制台打印了一些信息。
+这些调试和打印语句都在它们各自的提交记录里。最后我终于找到了造成这个 Bug 的根本原因，解决掉以后觉得沾沾自喜！
+最后就差把 bugFix 分支里的工作合并回 main 分支了。你可以选择通过 fast-forward 快速合并到 main 分支上，但这样的话 main 分支就会包含我这些调试语句了。你肯定不想这样，应该还有更好的方式
+### 4.5 合并分支
+- 第一种命令
+git merge <被合并对象>
+在 Git 中合并两个分支时会产生一个特殊的提交记录，它有两个 parent 节点。翻译成自然语言相当于：“我要把这两个 parent 节点本身及它们所有的祖先都包含进来。”
+![分支合并-1](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/分支合并-1.png)
+![合并分支-2](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/合并分支-2.png)
+![合并分支-merge](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/合并分支-merge.png)
+- 第二种命令
+git rebase <目标分支>
+Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。
+Rebase 的优势就是可以创造更线性的提交历史，这听上去有些难以理解。如果只允许使用 Rebase 的话，代码库的提交历史将会变得异常清晰。
+其中，<目标分支> 是你希望将当前分支的提交应用到的目标分支。git rebase 命令会将当前分支上的提交逐个应用到目标分支上，并将目标分支的最新提交设置为最新的基准点。
+注意:**rebase会将分支上进行的每个提交应用到目标分支上**
+![rebase-合并提交](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/rebase-合并提交.png)
+![分支合并-rebase操作-01](https://cdn.jsdelivr.net/gh/zysok2023/cloudImg/blogs/picture/分支合并-rebase操作-01.png)
+git pull 就是fetch和merge的简写
+git pull --rebase就是fetch和rebase的简写
+### 4.6  冲突与合并
+在Git中，<<<<<<<, =======, 和 >>>>>>> 是用于标记合并冲突的标记。这些标记出现在合并冲突文件中，帮助你识别和解决合并冲突。
+- 合并冲突示例
+假设你在合并两个分支时，某个文件中同一个位置有不同的更改，Git 会插入这些冲突标记，显示两个分支的不同之处：
+
+```plaintext
+这是从当前分支 (HEAD) 的更改。
+这是从要合并进来的分支的更改。
+```
+- <<<<<<< HEAD：标记冲突的开始部分，下面的内容是当前分支（通常是 HEAD 分支）中的更改。
+- =======：标记冲突的中间部分，分隔当前分支和要合并进来的分支的更改
+- >>>>>>> branch-to-merge：标记冲突的结束部分，branch-to-merge 表示要合并进来的分支名，下面的内容是该分支中的更改
+#### 解决冲突
+解决冲突时，需要手动编辑文件，选择保留哪部分内容，或者进行必要的合并。编辑完成后，移除这些冲突标记并保存文件。然后，添加并提交修改。
+```
+git add .
+git rebase --continue
+```
+
+### 4.7  其它常用命令
+#### 删除本地分支和远程分支
+- 删除本地分支
+git branch -d <branch>
+- 删除远程分支
+git push origin -delete <branch>
 #### 关联远程仓库
 - 如果还没有Git仓库，你需要
 git init
@@ -330,7 +393,7 @@ HEAD^^可以换作具体版本hash值。
 git commit --amend
 - 看看当前状态吧
 git status
-### 4.4 配置Git
+### 4.8 配置Git
 - 看看当前的配置
 git config --list
 - 估计你需要配置你的名字
