@@ -10,4 +10,5 @@ python
    python函数的执行过程
    python模块和包
    python基础知识
+   python序列化及反序列化
 

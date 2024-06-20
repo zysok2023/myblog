@@ -11,3 +11,4 @@
    shell
    正则表达式
    wget与curl
+   nc
