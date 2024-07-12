@@ -46,10 +46,12 @@
 - ^blah：删除上一条命令中的 blah
 - ^blah^foo：将上一条命令中的 blah 替换为 foo
 - ^blah^foo^：将上一条命令中所有的 blah 都替换为 foo
+
 ## 2.命令
 BRE 是较为传统的正则表达式语法，要求更多的转义字符。
 ERE 是扩展语法，简化了许多常用模式的写法，无需大量转义。
 sed和grep都是使用的BRE，如果需要使用ERE则需要加参数-E
+
 ### 2.1 grep
 - 使用 --color 选项对 grep 结果进行着色
 - 在所有目录中递归搜索字符串 grep -r "string-name" *
@@ -75,6 +77,7 @@ sed和grep都是使用的BRE，如果需要使用ERE则需要加参数-E
 - 删除 x 到 y 范围内的行 sed 'x,yd' filename.txt
 - 删除第n行到最后一行 sed 'nth,$d' filename.txt
 - 删除模式匹配行 sed '/abc/d' filename.txt
+
 ### 2.3 awk
 AWK 操作：逐行扫描文件 - 将每个输入行拆分为字段 - 将输入行/字段与模式进行比较 - 对匹配的行执行操作
 - Awk 的默认行为：默认情况下，Awk 打印指定文件中的每一行数据。awk '{print}' 员工.txt
@@ -118,6 +121,7 @@ Linux 中的 find 命令是一个动态实用程序，设计用于在分层结�
 |l |symbolic link;|符号链接|
 |s |socket|套接字|
 |D |door (Solaris)||
+
 ### 2.6 ps
 ps命令提供了-o选项，用于自定义输出的格式。可以指定要显示的字段，并使用逗号分隔。常见的字段包括pid（进程ID）、ppid（父进程ID）、user（用户）、cmd（命令）等。例如：ps -o pid,ppid,user,cmd,%mem,%cpu,etime
 - 按 CPU 占用排序进程  ps aux --sort=-%cpu
@@ -137,6 +141,7 @@ ps 命令可以显示不同状态的进程，常见的进程状态包括：
 - T ：停止状态。进程已经停止执行，通常是由于接收到一个停止信号（如Ctrl+Z）
 - +（Foreground process）：在Unix系统中，进程是前台进程，正在与用户交互
 - -（Background process）：在Unix系统中，进程是后台进程，不与用户交互。
+
 ### 2.7 lsof
 lsof（list open files）是一个查看当前系统文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，该文件描述符提供了大量关于这个应用程序本身的信息。
 - 使用-i显示所有连接 lsof -i，使用-i 6仅获取IPv6流量
@@ -159,6 +164,7 @@ lsof（list open files）是一个查看当前系统文件的工具。在linux�
 - 同时使用-t和-c选项以给进程发送 HUP 信号  kill -HUP `lsof -t -c sshd`
 - lsof +L1显示所有打开的链接数小于1的文件 lsof +L1
 - 显示某个端口范围的打开的连接 lsof -i @fw.google.com:2150=2180
+
 ### 2.8 lscpu
 lscpu从sysfs和/proc/cpuinfo收集cpu体系结构信息，命令的输出比较易读,命令输出的信息包含cpu数量，线程，核数，套接字和Nom-Uniform Memeor Access(NUMA)，缓存等.
 Architecture:         #架构
@@ -175,3 +181,43 @@ Virtualization:       #cpu支持的虚拟化技术
 L1d cache:            #一级缓存,表示cpu的L1数据缓存
 L1i cache:            #一级缓存（具体为L1指令缓存）
 L2 cache:             #二级缓存
+
+### 2.9 dd
+dd 命令用于按指定的大小和数量来复制文件和转换数据。它可以用于创建、备份、恢复和转换文件。
+```shell
+dd if=/dev/zero of=/path/to/testfile bs=1G count=1 oflag=direct
+dd if=/dev/urandom of=/path/to/random_file bs=1M count=1024
+dd if=/path/to/backup.img of=/dev/sdX bs=4M
+dd if=/dev/sdX of=/path/to/backup.img bs=4M
+dd if=test.der of=test.tbs bs=1 skip=4 count=188
+```
+### 2.10 xxd
+xxd 命令用于创建二进制文件的十六进制（hex）表示和将十六进制表示转换回二进制文件。
+```shell
+# 将二进制文件转换为十六进制表示
+xxd filename
+# 将十六进制表示转换回二进制文件,-r表示从十六进制转换，而-p表示使用纯粹的十六进制格式
+xxd -r -p hexdata.txt binarydata
+```
+
+### 2.11 ulimit
+ulimit 命令用于查看和设置用户级别的资源限制。这些限制可以防止某个进程消耗过多的系统资源，从而影响系统的稳定性和性能。
+- -a：显示当前所有的限制。
+- -c：设置core文件的最大值，单位为块。
+- -d：设置数据段的最大值，单位为KB。
+- -f：设置文件大小的最大值，单位为块。
+- -l：设置可加锁内存的最大值，单位为KB。
+- -m：设置进程的最大内存使用量，单位为KB。
+- -n：设置文件描述符的最大数量。
+- -s：设置堆栈的最大值，单位为KB。
+- -t：设置CPU时间的最大值，单位为秒。
+- -u：设置用户可打开的最大进程数。
+
+### 2.12 ip
+ip 命令用于配置和显示 Linux 系统的网络接口。它可以用于查看网络接口的状态，设置 IP 地址，路由，ARP 表等。
+- 给一个网卡绑定多个ip
+```shell
+ip addr add 192.168.1.100/24 dev eth0
+ip addr add 192.168.1.101/24 dev eth0
+```
+
