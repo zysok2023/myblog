@@ -221,3 +221,24 @@ ip addr add 192.168.1.100/24 dev eth0
 ip addr add 192.168.1.101/24 dev eth0
 ```
 
+### 2.13 netstat
+netstat 命令用于显示网络连接，路由表，接口统计，伪装连接和多播成员等信息。它可以用于查看网络接口的状态，设置 IP 地址，路由，ARP 表等。
+- 显示所有TCP连接 netstat -t
+- 显示所有UDP连接 netstat -u
+- 显示所有TCP和UDP连接 netstat -tu
+- 显示所有监听端口 netstat -l
+- 显示所有监听端口和TCP连接 netstat -lt
+- 显示所有监听端口和UDP连接 netstat -lu
+- 显示所有监听端口和所有连接 netstat -tul
+以下是常见的netstat命令输出结果中状态列可能包含的一些结果：
+- ESTABLISHED：表示TCP连接已经建立，双方可以进行数据传输。
+- SYN_SENT：表示正在发送连接请求，即处于TCP的第一次握手过程中。
+- SYN_RECEIVED：表示收到连接请求并确认，即处于TCP的第二次握手过程中。
+- FIN_WAIT_1：表示连接被关闭，但仍在等待对方发送关闭连接请求。
+- FIN_WAIT_2：表示连接已经收到关闭请求，等待对方发送最后的确认。
+- TIME_WAIT：表示连接已经关闭，但仍在等待足够的时间以确保对方收到了关闭请求的确认。
+- CLOSE_WAIT：表示连接被关闭，但仍有待处理的数据或请求。
+- LAST_ACK：表示已发送关闭请求，并等待对方的确认。
+- LISTEN：表示服务器正在监听来自客户端的连接请求。
+- CLOSING：表示正在关闭连接的最后阶段，即处于TCP的第四次握手过程中。
+- UNKNOWN：表示状态未知或无法确定。
