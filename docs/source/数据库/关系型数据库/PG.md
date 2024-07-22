@@ -147,6 +147,14 @@ Patroni支持用户配置在特定事件发生时触发回调脚本。因此我�
 ### haproxy
 haproxy作为服务代理和Patroni配套使用可以很方便地支持failover，读写分离和负载均衡，也是Patroni社区作为Demo的方案。缺点是haproxy本身也会占用资源，所有数据流量都经过haproxy，性能上会有一定损耗。
 
+## 通过端口实现读写分离机制
+读写分离的核心思想是将数据库的读操作和写操作分开处理，通常通过以下方式实现：
+- 主从复制（Master-Slave Replication）：将写操作发送到主数据库（Master），并将读操作发送到一个或多个从数据库（Slave）。
+- 代理层（Proxy Layer）：在应用程序和数据库之间引入一个代理层，代理层根据请求类型（读或写）将其路由到相应的数据库实例。
+- 应用程序逻辑：在应用程序中实现读写分离逻辑，根据操作类型将请求发送到不同的数据库节点。
+
+实现读写分离的具体方法取决于所使用的数据库和应用程序。例如，对于PostgreSQL，可以使用主从复制和Patroni来实现读写分离。对于MySQL，可以使用主从复制和ProxySQL来实现读写分离。对于应用程序，可以使用数据库连接池和连接字符串来实现读写分离。
+
 ## SQLAlchemy调用
 [sqlalchemy](https://fahadahammed.medium.com/unlocking-scalability-magic-run-postgres-read-write-nodes-on-docker-and-implement-it-with-pythons-5914804cd85a)
 
@@ -217,6 +225,3 @@ haproxy作为服务代理和Patroni配套使用可以很方便地支持failover�
 选择使用 PgBouncer 还是 SQLAlchemy 内建的连接池，取决于具体的应用场景和需求：
 PgBouncer 更适合多应用共享、高并发环境、需要独立管理数据库连接的场景。
 SQLAlchemy 连接池 更适合单一应用、开发和调试阶段、需要灵活配置的场景。
-
-
-
