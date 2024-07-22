@@ -13,13 +13,9 @@ Welcome to it-boy's documentation!
    网络/index
    大数据/index
    编程/index
+   数据库/index
    工具/index
    中间件/index
-   数据库/index
-   人工智能/index
-   云计算/index
-   操作系统/index
-   其他/index
 
 Indices and tables
 ==================

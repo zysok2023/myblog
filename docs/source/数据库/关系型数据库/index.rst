@@ -5,6 +5,6 @@
 .. toctree::
    :maxdepth: 1
 
-   PG数据库
+   PG
 
 
